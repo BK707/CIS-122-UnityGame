@@ -11,7 +11,7 @@ public class PlayerCollision : MonoBehaviour
 
      void OnCollisionEnter(Collision collisionInfo)
     {
-        
+        //Currently stopd motion of box, don't stop it just reduce score/timer and player can keep going****************
         if(collisionInfo.collider.tag == "Obstacle")
         {
             movement.enabled = false;
