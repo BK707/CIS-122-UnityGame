@@ -11,26 +11,34 @@ public class RunningScore : MonoBehaviour
     //public variables to hold the score value and the text to show
     public Text scoreText;
     public Text highScoreText;
+    public bool gameActive = false;
 
     //initialize both at variables = to zero
-    int score = 0;
-    int highScore = 0;
+    public int score = 0;
+    public int highScore = 0;
 
     //public variables for time, time text
     public float currentTime;
-    public Text currentTimeText;
 
+    //multiplier that we can change to decide how many points per unit time
+    public float multiplier;
 
     // Start is called before the first frame update
     void Start()
     {
         //set highscore to saved int?????????
         //highScore = PlayerPref.GetInt("high score", 0);
-
         
+        //when game starts the timer starts as well.
+        gameActive = true;
+        //reset timer
+        currentTime = 0;
+        highScore = PlayerPrefs.GetInt("highscore", 0);
+
+
         //set the score to the string score that is 0 to start EACH round
-     scoreText.text = score.ToString() + " POINTS"; 
-     highScoreText.text = "HIGHSCORE: " + highScore.ToString();
+        scoreText.text = score.ToString() + " POINTS"; 
+        highScoreText.text = "HIGHSCORE: " + highScore.ToString();
 
     }
 
@@ -38,19 +46,28 @@ public class RunningScore : MonoBehaviour
     void Update()
     {
         //advance the timer and change the text
-        /*
-        if (Timer active == true){
-            currentTime = currentTime + Time.deltaTime();
-            currentTimeText.text = currentTime.ToString();
+        if(gameActive == true)
+        { 
+            currentTime = currentTime + Time.deltaTime;
         }
-        */
+        //the score variable is equal to the time multiplied by multiplier
+        score = Mathf.RoundToInt(currentTime * multiplier);
+        //display
+        scoreText.text = score.ToString() + " POINTS";
+        highScoreText.text = "HIGHSCORE: " + highScore.ToString();
+
 
         //set highscore if running score is greater than saved value
-        /*
+
         if (score > highScore)
         {
-            PlayerPref.SetInt("highscore", score);
+            PlayerPrefs.SetInt("highscore", score);
         }
-        */
+
+
+        
     }
+
+    
+
 }
