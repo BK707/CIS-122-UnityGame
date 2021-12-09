@@ -10,8 +10,6 @@ public class RunningScore : MonoBehaviour
 {
     public static RunningScore instance;
     
-    
-    
     //public variables to hold the score value and the text to show
     public Text scoreText;
     public Text highScoreText;
@@ -67,19 +65,22 @@ public class RunningScore : MonoBehaviour
 
 
         //set highscore if running score is greater than saved value
-
         if (score > highScore)
         {
             PlayerPrefs.SetInt("highscore", score);
         }
 
-
-        
+        //if score is negative, just set to zero
+        if(score < 0)
+        {
+            score = 0;
+        }
     }
+
     //code to get rid of points when hit obstacle
     public void RemovePoints()
     {
-        score -= 5;
+        currentTime -= 2;
         scoreText.text = score.ToString() + " POINTS";
     }
     
