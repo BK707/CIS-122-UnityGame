@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class RunningScore : MonoBehaviour
 {
+    public static RunningScore instance;
+    
+    
+    
     //public variables to hold the score value and the text to show
     public Text scoreText;
     public Text highScoreText;
@@ -23,11 +27,16 @@ public class RunningScore : MonoBehaviour
     //multiplier that we can change to decide how many points per unit time
     public float multiplier;
 
+    //we can reference in other scripts
+    private void Awake()
+    {
+        instance = this;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
-        //set highscore to saved int?????????
-        //highScore = PlayerPref.GetInt("high score", 0);
         
         //when game starts the timer starts as well.
         gameActive = true;
@@ -67,7 +76,12 @@ public class RunningScore : MonoBehaviour
 
         
     }
-
+    //code to get rid of points when hit obstacle
+    public void RemovePoints()
+    {
+        score -= 5;
+        scoreText.text = score.ToString() + " POINTS";
+    }
     
 
 }

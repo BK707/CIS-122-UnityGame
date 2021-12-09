@@ -2485,7 +2485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -46, y: -57}
+  m_AnchoredPosition: {x: -25, y: -57}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1442519513
@@ -2602,6 +2602,7 @@ GameObject:
   - component: {fileID: 1646992331}
   - component: {fileID: 1646992333}
   - component: {fileID: 1646992332}
+  - component: {fileID: 1646992334}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -2625,7 +2626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -30}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646992332
@@ -2661,7 +2662,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: '
+  m_Text: 0 Points
 --- !u!222 &1646992333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2670,6 +2671,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646992330}
   m_CullTransparentMesh: 1
+--- !u!114 &1646992334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646992330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fce698d4867f634893fa0fefc574caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1646992332}
+  highScoreText: {fileID: 1442519513}
+  gameActive: 0
+  score: 0
+  highScore: 0
+  currentTime: 0
+  multiplier: 3
 --- !u!1001 &1720974061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3041,8 +3061,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kd: {fileID: 1826745192}
-  ForwardForce: 4000
+  ForwardForce: 50
   sidewaysForce: 100
+  upwardForce: 50
+  runningScore: {fileID: 1646992334}
+  multiplier: 0.01
 --- !u!114 &1826745198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3055,7 +3078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4910d1384e143314d93d5e4c092df07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 1826745197}
+  runningScore: {fileID: 0}
 --- !u!1001 &1840330433
 PrefabInstance:
   m_ObjectHideFlags: 0
